@@ -14,6 +14,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import SearchMain from './components/SearchMain'
 import YourProfile from './components/YourProfile'
 import Bucketlist from './components/Bucketlist'
+import { Font } from 'expo';
 
 class LandScreen extends React.Component {
   static navigationOptions = {
@@ -70,24 +71,18 @@ const NavTabs = TabNavigator({
 
 
 export default class App extends React.Component {
+  componentDidMount() {
+    Font.loadAsync({
+      'roboto': require('./assets/fonts/Roboto/Roboto-Regular.ttf'),
+    });
+  }
+
   render() {
     return (
       <NavTabs />
     );
   }
 }
-
-// const AppNavigator = TabNavigator(
-//   {
-//     NavTabs: {
-//       screen: NavTabs,
-//     },
-//   },
-// );
-//
-// export default () => <AppNavigator />;
-//
-
 
 
 const styles = StyleSheet.create({
@@ -97,5 +92,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
 });
