@@ -22,7 +22,7 @@ export default class SearchMain extends React.Component {
         <ScrollView>
           <Text>Search By Connection</Text>
           <Text>Search By Location</Text>
-          <Text>Browse All Locations</Text>          
+          <Text>Browse All Locations</Text>
         </ScrollView>
       </View>
     )
