@@ -1,0 +1,25 @@
+{/* <TouchableOpacity style={styles.locations} key={locations.id}>
+  <Text style={styles.text}>{locations.location}</Text>
+  <Text style={styles.text}>{locations.name}</Text>
+</TouchableOpacity> */}
+
+
+
+
+<Button
+  key={locations.id}
+  onPress={() => navigation.navigate('LocationProfile', { name: `${locations.location}` })}
+  title= {`${locations.location}` + ' : ' + `${locations.name}`}
+/>
+
+
+
+
+// export default class LocationProfile extends React.Component {
+//   constructor(props){
+//     super(props)
+//
+//     this.state = {
+//
+//     }
+//   }

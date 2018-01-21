@@ -9,18 +9,35 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import { TabNavigator } from 'react-navigation';
+import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Font } from 'expo';
 
 import SearchMain from './SearchMain'
 import YourProfile from './YourProfile'
 import Bucketlist from './Bucketlist'
-import SearchToSingle from './SearchToSingle'
+import LocationProfile from './LocationProfile'
+
+
+const Main = StackNavigator({
+  Home: {
+    screen: SearchMain,
+    path: '/',
+    navigationOptions: {
+      title: 'Browse Locations',
+    },
+  },
+  LocationProfile: {
+    screen: LocationProfile,
+    path: '/location/:name',
+  },
+});
+
 
 const NavTabs = TabNavigator({
   Main: {
-    screen: SearchMain,
+    screen: Main,
     navigationOptions: {
       tabBarLabel: 'Main',
       tabBarIcon: ({ tintColor, focused }) => (

@@ -25,9 +25,8 @@ export default class YourConnects extends React.Component {
         <View style={styles.container}>
           <ScrollView contentContainerStyle={styles.contentContainer}>
             {this.state.connections.map(connection =>
-              <TouchableOpacity>
-                <Text style={styles.text}
-                  key={connection.id}>{connection.name}</Text>
+              <TouchableOpacity key={connection.id}>
+                <Text style={styles.text}>{connection.name}</Text>
               </TouchableOpacity>
             )}
           </ScrollView>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import YourConnects from './YourConnects'
 import YourPlaces from './YourPlaces'
 
@@ -12,6 +12,9 @@ export default class YourProfile extends React.Component {
         <YourConnects />
         <Text>Where You've Been</Text>
         <YourPlaces />
+        <TouchableOpacity>
+          <Text>Add a location!</Text>
+        </TouchableOpacity>
       </View>
     )
   }

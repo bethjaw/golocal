@@ -8,10 +8,11 @@ import {
   TouchableOpacity,
   TextInput,
   Button,
+  StatusBar,
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
 import LocationProfile from './LocationProfile'
-import SearchToSingle from './SearchToSingle'
+
 
 export default class SearchMain extends React.Component {
   constructor(props){
@@ -19,6 +20,7 @@ export default class SearchMain extends React.Component {
 
     this.state = {
       locationData: [],
+      currentLocation: locations
     }
   }
 
@@ -28,9 +30,16 @@ export default class SearchMain extends React.Component {
       this.setState({locationData: json})
   }
 
+  currentLocation = (locations) => {
+    this.setState({
+      currentLocation: locations
+    })
+  }
+
   render() {
+    console.log(this.state)
     return (
-      <View>
+      <View style={styles.background}>
         <View style={styles.container}>
           <Image
             style={{width: 40, height: 40}}
@@ -52,12 +61,13 @@ export default class SearchMain extends React.Component {
           <Text style={styles.searchTitle}>Browse All Locations</Text>
         </View>
           <ScrollView contentContainerStyle={styles.contentContainer}>
-            {this.state.locationData.map(locations =>
-              <TouchableOpacity style={styles.locations}>
-                <Text style={styles.text}
-                  key={locations.id}>{locations.location}</Text>
-                <Text style={styles.text}
-                  key={locations.name}>{locations.name}</Text>
+            {this.state.locationData.map((locations) =>
+              <TouchableOpacity
+                style={styles.locations}
+                key={locations.id}
+                onPress={() => this.props.navigation.navigate('LocationProfile', { name: `${locations.location}` })}>
+                <Text style={styles.text}>{locations.location}</Text>
+                <Text style={styles.text}>{locations.name}</Text>
               </TouchableOpacity>
             )}
         </ScrollView>
@@ -68,16 +78,16 @@ export default class SearchMain extends React.Component {
 
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
+  background: {
+    backgroundColor: '#fff',
+    height: 700,
   },
   container: {
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    paddingTop: 45,
+    paddingTop: 20,
     paddingBottom: 20,
   },
   header: {
@@ -88,10 +98,12 @@ const styles = StyleSheet.create({
   search: {
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#fff',
   },
   contentContainer: {
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#fff',
   },
   locations: {
     borderColor: 'gray',
