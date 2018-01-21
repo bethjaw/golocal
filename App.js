@@ -75,16 +75,25 @@ import Login from './components/Login'
 
 
 export default class App extends React.Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      fontLoaded: false,
+    }
+  }
+
   componentDidMount() {
     Font.loadAsync({
       'roboto': require('./assets/fonts/Roboto/Roboto-Regular.ttf'),
     });
+    this.setState({ fontLoaded: true})
   }
 
   render() {
     return (
-        // <NavTabs />
-        <Login />
+        <NavTabs />
+        // <Login />
     );
   }
 }

@@ -16,6 +16,7 @@ import { Font } from 'expo';
 import SearchMain from './SearchMain'
 import YourProfile from './YourProfile'
 import Bucketlist from './Bucketlist'
+import SearchToSingle from './SearchToSingle'
 
 const NavTabs = TabNavigator({
   Main: {

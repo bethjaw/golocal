@@ -1,12 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import YourConnects from './YourConnects'
+import YourPlaces from './YourPlaces'
 
 
 export default class YourProfile extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>This is Your Profile</Text>
+        <Text>Your Connections</Text>
+        <YourConnects />
+        <Text>Where You've Been</Text>
+        <YourPlaces />
       </View>
     )
   }
@@ -14,11 +19,17 @@ export default class YourProfile extends React.Component {
 
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column'
+  },
   container: {
-    flex: .15,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'row',
+    flexDirection: 'column',
+    paddingTop: 45,
+    paddingBottom: 20,
   },
 });
