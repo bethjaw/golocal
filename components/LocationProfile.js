@@ -7,15 +7,23 @@ export default class LocationProfile extends React.Component {
     super(props)
 
     this.state = {
-
+      currentLocation: []
     }
   }
 
+  async componentDidMount(){
+    const response = await fetch(`https://golocalapi.herokuapp.com/api/location/${this.props.navigation.state.params.id}`)
+    const json = await response.text()
+      this.setState({currentLocation: json})
+  }
+
   render(){
+    // console.log(this.props.navigation.state.params)
+    console.log('state', this.state.currentLocation)
     return (
       <View style={styles.background}>
         <Text>This is a single location</Text>
-        <Text>{this.props.currentLocation}</Text>
+        <Text>{this.state.currentLocation}</Text>
       </View>
     )
   }

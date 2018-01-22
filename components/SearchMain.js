@@ -20,7 +20,6 @@ export default class SearchMain extends React.Component {
 
     this.state = {
       locationData: [],
-      currentLocation: locations
     }
   }
 
@@ -30,14 +29,8 @@ export default class SearchMain extends React.Component {
       this.setState({locationData: json})
   }
 
-  currentLocation = (locations) => {
-    this.setState({
-      currentLocation: locations
-    })
-  }
-
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <View style={styles.background}>
         <View style={styles.container}>
@@ -65,9 +58,13 @@ export default class SearchMain extends React.Component {
               <TouchableOpacity
                 style={styles.locations}
                 key={locations.id}
-                onPress={() => this.props.navigation.navigate('LocationProfile', { name: `${locations.location}` })}>
+                onPress={() => this.props.navigation.navigate('LocationProfile', { name: `${locations.location}`, id: `${locations.id}`})}>
+                <Image
+                  style={{width: 200, height: 150}}
+                  source={{uri: locations.location_image }}
+                />
                 <Text style={styles.text}>{locations.location}</Text>
-                <Text style={styles.text}>{locations.name}</Text>
+                {/* <Text style={styles.text}>{locations.name}</Text> */}
               </TouchableOpacity>
             )}
         </ScrollView>
@@ -109,15 +106,20 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     borderRadius: 2,
+    width: 378,
     margin: 5,
-    width: 200,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   text: {
     textAlign: 'right',
     paddingRight: 10,
+    paddingLeft: 60,
     fontSize: 16,
   },
   searchTitle: {
     fontSize: 16,
-  }
+    margin: 5,
+  },
+
 });
