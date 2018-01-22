@@ -19,8 +19,17 @@ export default class Login extends React.Component {
     this.state = {
       signUp: false,
       logIn: false,
+      allUsers: [],
+      email: '',
+      password: '',
       currentUser: [],
     }
+  }
+
+  async componentDidMount(){
+    const response = await fetch('https://golocalapi.herokuapp.com/api/user')
+    const json = await response.json()
+      this.setState({allUsers: json})
   }
 
   toggleSignUp = () => {
@@ -45,15 +54,34 @@ export default class Login extends React.Component {
 
   renderSignInForm(){
     if(this.state.logIn){
-      return <SignIn />
+      return <SignIn userLogin={this.checkUser}/>
     } else {
       return
     }
   }
 
+  checkUser = (e) => {
+    e.preventDefault()
+    let userLogin = {
+      email: e.target.email.value,
+      password: e.target.password.value
+    }
+    let user = ''
+    for(var i=0; i < this.props.allUsers.length; i++){
+      if(this.props.allUsers[i].email === userLogin && this.props.allUsers[i].password === userLogin.password){
+        user = this.props.allUsers[i]
+      }
+    }
+    this.setState({
+      currentUser: user
+    })
+  }
+
+
   render() {
+    console.log('login', this.state)
     return (
-      <View>
+      <View style={styles.background}>
         <View style={styles.container}>
           <Image
             style={{width: 40, height: 40}}
@@ -66,7 +94,6 @@ export default class Login extends React.Component {
           source={require('../assets/homeLogin.jpg')}
         />
         <ScrollView contentContainerStyle={styles.contentContainer}>
-
           <TouchableOpacity
             onPress={this.toggleSignUp}
             style={styles.button}>
@@ -86,6 +113,10 @@ export default class Login extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  background: {
+    backgroundColor: '#fff',
+    height: 700,
+  },
   mainContainer: {
     flex: 1,
     alignItems: 'center',
@@ -98,7 +129,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    paddingTop: 45,
+    paddingTop: 20,
     paddingBottom: 20,
   },
   header: {

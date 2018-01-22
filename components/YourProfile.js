@@ -8,9 +8,12 @@ export default class YourProfile extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Your Connections</Text>
-        <YourConnects />
-        <Text>Where You've Been</Text>
+        <Text style={styles.titles}>Your Connections</Text>
+        <ScrollView horizontal={true}
+           contentContainerStyle={styles.contentContainer}>
+          <YourConnects />
+        </ScrollView>
+        <Text style={styles.titles}>Where You've Been</Text>
         <YourPlaces />
         <TouchableOpacity>
           <Text>Add a location!</Text>
@@ -22,17 +25,17 @@ export default class YourProfile extends React.Component {
 
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column'
-  },
   container: {
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'column',
-    paddingTop: 45,
-    paddingBottom: 20,
+    paddingTop: 50,
   },
+  titles: {
+    fontSize: 18,
+  },
+  contentContainer: {
+    width: 300,
+  },
+
 });

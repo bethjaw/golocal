@@ -8,12 +8,11 @@ export default class YourConnects extends React.Component {
 
     this.state = {
       connections: [],
-
     }
   }
 
   async componentDidMount(){
-    const response = await fetch('https://golocalapi.herokuapp.com/api/connection/1')
+    const response = await fetch('https://golocalapi.herokuapp.com/api/connections/1')
     // $this.props.currentUser.id
     const json = await response.json()
       this.setState({connections: json})
@@ -23,7 +22,8 @@ export default class YourConnects extends React.Component {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.container}>
-          <ScrollView contentContainerStyle={styles.contentContainer}>
+          <ScrollView horizontal={true}
+            contentContainerStyle={styles.contentContainer}>
             {this.state.connections.map(connection =>
               <TouchableOpacity key={connection.id}>
                 <Text style={styles.text}>{connection.name}</Text>

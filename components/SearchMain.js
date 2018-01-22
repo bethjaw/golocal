@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
 import LocationProfile from './LocationProfile'
+import NavTabs from './NavTabs'
 
 
 export default class SearchMain extends React.Component {
@@ -20,19 +21,23 @@ export default class SearchMain extends React.Component {
 
     this.state = {
       locationData: [],
+      currentLocation: [],
     }
   }
 
   async componentDidMount(){
-    const response = await fetch('https://golocalapi.herokuapp.com/api/locations')
+    const response = await fetch('https://golocalapi.herokuapp.com/api/connectlocate/1')
+    // $this.props.currentUser.id
     const json = await response.json()
       this.setState({locationData: json})
   }
 
   render() {
-    // console.log(this.state)
+    // console.log('locationData', this.state.locationData)
+    // console.log('currentLocation', this.state.currentLocation);
     return (
       <View style={styles.background}>
+        {/* <NavTabs /> */}
         <View style={styles.container}>
           <Image
             style={{width: 40, height: 40}}
@@ -54,17 +59,19 @@ export default class SearchMain extends React.Component {
           <Text style={styles.searchTitle}>Browse All Locations</Text>
         </View>
           <ScrollView contentContainerStyle={styles.contentContainer}>
-            {this.state.locationData.map((locations) =>
+            {this.state.locationData.map((location) =>
               <TouchableOpacity
-                style={styles.locations}
-                key={locations.id}
-                onPress={() => this.props.navigation.navigate('LocationProfile', { name: `${locations.location}`, id: `${locations.id}`})}>
+                style={styles.location}
+                key={location.id}
+                onPress={() => this.props.navigation.navigate('LocationProfile', { name: `${location.location}`, id: `${location.id}`})}>
                 <Image
                   style={{width: 200, height: 150}}
-                  source={{uri: locations.location_image }}
+                  source={{uri: location.location_image }}
                 />
-                <Text style={styles.text}>{locations.location}</Text>
-                {/* <Text style={styles.text}>{locations.name}</Text> */}
+                <View>
+                  <Text style={styles.text}>{location.location}</Text>
+                  <Text style={styles.text}>{location.name}</Text>
+                </View>
               </TouchableOpacity>
             )}
         </ScrollView>
@@ -102,12 +109,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#fff',
   },
-  locations: {
+  location: {
     borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 2,
+    borderBottomWidth: .25,
+    borderTopWidth: 1,
     width: 378,
-    margin: 5,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -121,5 +127,4 @@ const styles = StyleSheet.create({
     fontSize: 16,
     margin: 5,
   },
-
 });

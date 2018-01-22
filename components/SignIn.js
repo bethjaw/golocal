@@ -6,13 +6,14 @@ export default class SignIn extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      email: '',
-      password: '',
-    }
+    // this.state = {
+    //
+    // }
   }
 
+
   render(){
+    console.log(this.state.allUsers);
     return (
       <View style={styles.container}>
         <TextInput
@@ -28,7 +29,7 @@ export default class SignIn extends React.Component {
           value={this.state.password}
         />
         <TouchableOpacity
-          // onPress={this.toggleSignIn}
+          onPress={this.props.userLogin}
           style={styles.button}>
           <Text style={styles.btnText}>Login</Text>
         </TouchableOpacity>

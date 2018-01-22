@@ -18,12 +18,17 @@ import SearchMain from './SearchMain'
 import YourProfile from './YourProfile'
 import Bucketlist from './Bucketlist'
 import LocationProfile from './LocationProfile'
+import Login from './Login'
 
 
 const Main = StackNavigator({
-  Home: {
+  // Login: {
+  //   screen: Login,
+  //   path: '/',
+  // },
+  Main: {
     screen: SearchMain,
-    path: '/',
+    path: '/main/:id',
     navigationOptions: {
       title: 'Browse Locations',
     },
@@ -47,6 +52,7 @@ const NavTabs = TabNavigator({
           style={{ color: tintColor }}
         />
       ),
+      // tabBarVisible: false,
     },
   },
   Profile: {
