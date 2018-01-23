@@ -19,6 +19,8 @@ import YourProfile from './YourProfile'
 import Bucketlist from './Bucketlist'
 import LocationProfile from './LocationProfile'
 import Login from './Login'
+import ConnectionProfile from './ConnectionProfile'
+import AddLocation from './AddLocation'
 
 
 const Main = StackNavigator({
@@ -39,6 +41,24 @@ const Main = StackNavigator({
   },
 });
 
+const ProfileTab = StackNavigator({
+  YourProfile: {
+    screen: YourProfile,
+    path: '/profile/:id',
+    navigationOptions: {
+      // title: `${}`,
+    },
+  },
+  ConnectionProfile: {
+    screen: ConnectionProfile,
+    path: '/connection/:id',
+  },
+  AddLocation: {
+    screen: AddLocation,
+    path: '/addLocation',
+  },
+});
+
 
 const NavTabs = TabNavigator({
   Main: {
@@ -56,7 +76,7 @@ const NavTabs = TabNavigator({
     },
   },
   Profile: {
-    screen: YourProfile,
+    screen: ProfileTab,
     navigationOptions: {
       tabBarLabel: 'Profile',
       tabBarIcon: ({ tintColor, focused }) => (

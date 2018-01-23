@@ -18,6 +18,7 @@ import SearchMain from './components/SearchMain'
 // import YourProfile from './components/YourProfile'
 // import Bucketlist from './components/Bucketlist'
 import Login from './components/Login'
+import CameraRollPicker from './components/CameraRollPicker'
 
 
 export default class App extends React.Component {
@@ -26,20 +27,37 @@ export default class App extends React.Component {
 
     this.state = {
       fontLoaded: false,
+      currentUser: []
     }
   }
 
-  componentDidMount() {
+  async componentDidMount(){
+    const response = await fetch('https://golocalapi.herokuapp.com/api/user/1')
+    // $this.props.currentUser.id
+    const json = await response.json()
+
     Font.loadAsync({
-      'roboto': require('./assets/fonts/Roboto/Roboto-Regular.ttf'),
-    });
-    this.setState({ fontLoaded: true})
+        'roboto': require('./assets/fonts/Roboto/Roboto-Regular.ttf'),
+      });
+
+      this.setState({
+        currentUser: json,
+        fontLoaded: true,
+      })
   }
+
+  // componentDidMount() {
+  //   Font.loadAsync({
+  //     'roboto': require('./assets/fonts/Roboto/Roboto-Regular.ttf'),
+  //   });
+  //   this.setState({ fontLoaded: true})
+  // }
 
   render() {
     // console.log('app', this.state)
+    // console.log('app', this.state.currentUser);
     return (
-        <NavTabs />
+        <NavTabs screenProps={this.state}/>
     );
   }
 }

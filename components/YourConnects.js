@@ -1,5 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Image
+} from 'react-native';
+import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
+import NavTabs from './NavTabs'
+import ConnectionProfile from './ConnectionProfile'
 
 
 export default class YourConnects extends React.Component {
@@ -19,13 +29,21 @@ export default class YourConnects extends React.Component {
   }
 
   render() {
+    // console.log('yourconnects', this.props.props);
     return (
       <View style={styles.mainContainer}>
         <View style={styles.container}>
           <ScrollView horizontal={true}
             contentContainerStyle={styles.contentContainer}>
             {this.state.connections.map(connection =>
-              <TouchableOpacity key={connection.id}>
+              <TouchableOpacity
+                key={connection.id}
+                style={styles.connection}
+                onPress={() => this.props.props.navigation.navigate('ConnectionProfile', { name:`${connection.name}`, id: `${connection.id}`, avatar: `${connection.avatar}`})}>
+                <Image
+                  style={styles.avatar}
+                  source={{uri: connection.avatar}}
+                />
                 <Text style={styles.text}>{connection.name}</Text>
               </TouchableOpacity>
             )}
@@ -48,7 +66,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    paddingTop: 45,
+    paddingTop: 10,
     paddingBottom: 20,
   },
   contentContainer: {
@@ -56,8 +74,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    textAlign: 'right',
-    paddingRight: 10,
+    textAlign: 'center',
     fontSize: 16,
+  },
+  avatar: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    margin: 5,
+  },
+  connection: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

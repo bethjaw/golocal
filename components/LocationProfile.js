@@ -25,9 +25,17 @@ export default class LocationProfile extends React.Component {
     return (
       <View style={styles.background}>
         <ScrollView>
+          <Image
+            style={styles.icon}
+            source={require('../assets/mapcheck2.png')}
+          />
           {this.state.currentLocation.map(details =>
             <View key={details.id}>
               <Text style={styles.LocationTitle}>{details.location}, {details.country}</Text>
+              <Image
+                style={styles.iconPlus}
+                source={require('../assets/plus.png')}
+              />
               <Image
                 style={{width: 380, height: 280}}
                 source={{uri: details.location_image}}
@@ -54,9 +62,12 @@ const styles = StyleSheet.create({
     height: 700,
   },
   LocationTitle: {
-    fontSize: 20,
+    fontSize: 22,
     textAlign: 'center',
-    margin: 10,
+    margin: 12,
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+    paddingBottom: 5,
+    paddingTop: 5,
   },
   Details: {
     paddingLeft: 30,
@@ -68,5 +79,22 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     fontWeight: 'bold',
     paddingLeft: 30,
+  },
+  icon: {
+    width: 42,
+    height: 42,
+    position: 'absolute',
+    top: 4,
+    bottom: 4,
+    left: 4,
+  },
+  iconPlus: {
+    width: 35,
+    height: 35,
+    position: 'absolute',
+    right: 0,
+    top: 8,
+    bottom: 4,
+    right: 8,
   }
 });

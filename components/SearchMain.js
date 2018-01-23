@@ -33,14 +33,14 @@ export default class SearchMain extends React.Component {
   }
 
   render() {
+    // console.log('mainsearch', this.props);
     // console.log('locationData', this.state.locationData)
     // console.log('currentLocation', this.state.currentLocation);
     return (
       <View style={styles.background}>
-        {/* <NavTabs /> */}
         <View style={styles.container}>
           <Image
-            style={{width: 40, height: 40}}
+            style={{width: 50, height: 50}}
             source={require('../assets/mapcheck.png')}
           />
           <Text style={styles.header}>GOLOCAL</Text>
@@ -68,9 +68,9 @@ export default class SearchMain extends React.Component {
                   style={{width: 200, height: 150}}
                   source={{uri: location.location_image }}
                 />
-                <View>
-                  <Text style={styles.text}>{location.location}</Text>
-                  <Text style={styles.text}>{location.name}</Text>
+                <View style={styles.text}>
+                  <Text style={styles.textLocation}>{location.location}</Text>
+                  <Text style={styles.textPerson}>{location.name}</Text>
                 </View>
               </TouchableOpacity>
             )}
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   },
   header: {
     textAlign: 'center',
-    fontSize: 32,
+    fontSize: 36,
     fontWeight: 'bold',
   },
   search: {
@@ -108,19 +108,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff',
+    // top: 0,
+    // bottom: 50,
+    height: 800,
   },
   location: {
     borderColor: 'gray',
-    borderBottomWidth: .25,
-    borderTopWidth: 1,
-    width: 378,
+    borderWidth: 1,
+    borderRadius: 2,
+    margin: 3,
+    // borderBottomWidth: .25,
+    // borderTopWidth: 1,
+    // width: 378,
+    width: 350,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  text: {
-    textAlign: 'right',
-    paddingRight: 10,
-    paddingLeft: 60,
+  textLocation: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    paddingRight: 40,
+    fontSize: 16,
+  },
+  textPerson: {
+    textAlign: 'center',
+    paddingRight: 40,
     fontSize: 16,
   },
   searchTitle: {
