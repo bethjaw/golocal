@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, RefreshControl } from 'react-native';
+import LocationProfile from './LocationProfile'
 
 
 export default class YourPlaces extends React.Component {
@@ -17,15 +18,27 @@ export default class YourPlaces extends React.Component {
       this.setState({places: json})
   }
 
+  // onAddLocation = (e) => {
+  //   this.setState({
+  //     places:
+  //   })
+  // }
+
+
   render() {
-    console.log('places page', this.state.places);
+    // console.log('places page', this.state.places);
+    // console.log('places props', this.props.navigate.navigate);
     return (
       <View style={styles.mainContainer}>
         <View style={styles.container}>
           <ScrollView contentContainerStyle={styles.contentContainer}>
             {this.state.places.map(place =>
-              <TouchableOpacity key={place.id}>
-                <Text style={styles.text}>{place.location}</Text>
+              <TouchableOpacity
+                key={place.id}
+                onPress={() => this.props.navigate.navigate('LocationProfile', {id:`${place.id}`}
+                )}
+                >
+                <Text style={styles.text}>{place.location}, {place.country}</Text>
               </TouchableOpacity>
             )}
           </ScrollView>
@@ -47,7 +60,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    paddingTop: 45,
+    // paddingTop: 45,
     paddingBottom: 20,
   },
   contentContainer: {

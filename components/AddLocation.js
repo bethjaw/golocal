@@ -8,6 +8,7 @@ import {
   Image,
   TextInput,
   Button,
+  Alert,
 } from 'react-native';
 import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
 import NavTabs from './NavTabs'
@@ -20,7 +21,8 @@ export default class AddLocation extends React.Component {
       location: '',
       country: '',
       transportation: '',
-      user_id: this.props.navigation.state.params.user_id
+      user_id: this.props.navigation.state.params.user_id,
+      message: '',
     }
   }
 
@@ -38,11 +40,13 @@ export default class AddLocation extends React.Component {
         user_id: this.state.user_id
       }),
     })
+    this.setState({message: 'Your location was added! Head back to your profile and add some to dos!'})
   }
 
   render(){
     // console.log(this.props.navigation.state.params.user_id);
-    console.log('user', this.state);
+    // console.log('user', this.state);
+    // console.log('user', this.props);
     return (
       <View style={styles.background}>
         <View style={styles.formContainer}>
@@ -74,6 +78,9 @@ export default class AddLocation extends React.Component {
               <Text style={styles.btnText}>Add!</Text>
             </TouchableOpacity>
           </View>
+          <View style={styles.messageCont}>
+            <Text style={styles.message}>{this.state.message}</Text>
+          </View>
         </View>
     )
   }
@@ -84,6 +91,8 @@ const styles = StyleSheet.create({
   background: {
     backgroundColor: '#fff',
     height: 700,
+    alignItems: 'center',
+    // justifyContent: 'center',
   },
   input: {
     height: 40,
@@ -108,5 +117,12 @@ const styles = StyleSheet.create({
   formContainer: {
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  message: {
+    textAlign: 'center',
+    marginTop: 15,
+  },
+  messageCont: {
+    width: 200,
   }
 })

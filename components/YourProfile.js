@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, } from 'react-native';
 import YourConnects from './YourConnects'
 import YourPlaces from './YourPlaces'
 import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
@@ -10,11 +10,11 @@ export default class YourProfile extends React.Component {
   constructor(props){
     super(props)
 
-
   }
 
   render() {
-    // console.log('yourprof', this.props.screenProps.currentUser);
+    // console.log('yourprof', this.props.navigation);
+    // console.log('profile', this.state);
     return (
       <View style={styles.background}>
         <View style={styles.container}>
@@ -32,10 +32,10 @@ export default class YourProfile extends React.Component {
            contentContainerStyle={styles.contentContainer}>
           <YourConnects props={this.props}/>
         </ScrollView>
-        <Text style={styles.titles}>Where You've Been</Text>
+          <Text style={styles.titles}>Where You've Been</Text>
           {this.props.screenProps.currentUser.map(userId =>
-            <YourPlaces key={userId.id} user_id={userId.id}/>
-            )}
+          <YourPlaces key={userId.id} user_id={userId.id} navigate={this.props.navigation}/>
+          )}
         <View>
           {this.props.screenProps.currentUser.map((user) =>
           <TouchableOpacity
@@ -51,8 +51,6 @@ export default class YourProfile extends React.Component {
     )
   }
 }
-
-
 
 
 

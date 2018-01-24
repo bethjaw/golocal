@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-
+import LocationProfile from './LocationProfile'
 
 export default class ConnectionProfile extends React.Component {
   constructor(props){
@@ -26,8 +26,8 @@ export default class ConnectionProfile extends React.Component {
   }
 
   render(){
-    // console.log('single connection', this.state);
-    // console.log('single props', this.props);
+    console.log('single state', this.state);
+    console.log('single props', this.props);
     return (
       <View style={styles.background}>
         <View style={styles.headContain}>
@@ -40,7 +40,12 @@ export default class ConnectionProfile extends React.Component {
         </View>
         <View style={styles.container}>
            {this.state.location.map((details) =>
-             <Text style={styles.location} key={details.id}>{details.location}, {details.country}</Text>
+             <TouchableOpacity
+               key={details.id}
+               onPress={() => this.props.navigation.navigate('LocationProfile', {id:`${details.id}`} )}
+               >
+               <Text style={styles.location}>{details.location}, {details.country}</Text>
+             </TouchableOpacity>
            )}
          </View>
       </View>
