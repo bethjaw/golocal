@@ -8,26 +8,24 @@ export default class YourPlaces extends React.Component {
 
     this.state = {
       places: [],
-
     }
   }
 
   async componentDidMount(){
-    const response = await fetch('https://golocalapi.herokuapp.com/api/location/1')
-    // $this.props.currentUser.id
+    const response = await fetch(`https://golocalapi.herokuapp.com/api/locationByUser/${this.props.user_id}`)
     const json = await response.json()
       this.setState({places: json})
   }
 
   render() {
+    console.log('places page', this.state.places);
     return (
       <View style={styles.mainContainer}>
         <View style={styles.container}>
           <ScrollView contentContainerStyle={styles.contentContainer}>
             {this.state.places.map(place =>
-              <TouchableOpacity>
-                <Text style={styles.text}
-                  key={place.id}>{place.location}</Text>
+              <TouchableOpacity key={place.id}>
+                <Text style={styles.text}>{place.location}</Text>
               </TouchableOpacity>
             )}
           </ScrollView>

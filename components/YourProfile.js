@@ -28,13 +28,14 @@ export default class YourProfile extends React.Component {
               <Text style={styles.name}>{yourInfo.name}</Text>
               </View>
             )}
-            {/* <Text style={styles.titles}>Connections</Text> */}
         <ScrollView horizontal={true}
            contentContainerStyle={styles.contentContainer}>
           <YourConnects props={this.props}/>
         </ScrollView>
         <Text style={styles.titles}>Where You've Been</Text>
-        <YourPlaces />
+          {this.props.screenProps.currentUser.map(userId =>
+            <YourPlaces key={userId.id} user_id={userId.id}/>
+            )}
         <View>
           {this.props.screenProps.currentUser.map((user) =>
           <TouchableOpacity

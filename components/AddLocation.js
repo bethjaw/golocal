@@ -24,12 +24,21 @@ export default class AddLocation extends React.Component {
     }
   }
 
-  // setUserId(){
-  //   {this.props.screenProps.currentUser.map((user) => {
-  //     this.setState({user_id: user.id})
-  //     })}
-  //     return
-  // }
+  async addLocation(){
+    const response = await fetch(`https://golocalapi.herokuapp.com/api/addLocation/${this.props.navigation.state.params.user_id}`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        location: this.state.location,
+        country: this.state.country,
+        transportation: this.state.transportation,
+        user_id: this.state.user_id
+      }),
+    })
+  }
 
   render(){
     // console.log(this.props.navigation.state.params.user_id);
@@ -59,14 +68,11 @@ export default class AddLocation extends React.Component {
             value={this.state.transportation}
           />
           <Text>Image</Text>
-
           <TouchableOpacity
             style={styles.button}
-            // onPress={this.}
-            >
+            onPress={() => this.addLocation()}>
               <Text style={styles.btnText}>Add!</Text>
             </TouchableOpacity>
-
           </View>
         </View>
     )
