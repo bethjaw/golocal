@@ -34,7 +34,7 @@ export default class LocationProfile extends React.Component {
               <Text style={styles.LocationTitle}>{details.location}, {details.country}</Text>
               <Image
                 style={styles.iconPlus}
-                source={require('../assets/plus.png')}
+                source={require('../assets/plus2.png')}
               />
               <Image
                 style={{width: 380, height: 280}}

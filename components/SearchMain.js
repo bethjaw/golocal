@@ -41,9 +41,9 @@ export default class SearchMain extends React.Component {
         <View style={styles.container}>
           <Image
             style={{width: 50, height: 50}}
-            source={require('../assets/mapcheck.png')}
+            source={require('../assets/mapcheck2.png')}
           />
-          <Text style={styles.header}>GOLOCAL</Text>
+          {/* <Text style={styles.header}>GOLOCAL</Text> */}
         </View>
         <View style={styles.search}>
           <Text style={styles.searchTitle}>Search By Connection</Text>
@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingRight: 40,
     fontSize: 16,
+
   },
   textPerson: {
     textAlign: 'center',
@@ -138,6 +139,15 @@ const styles = StyleSheet.create({
   },
   searchTitle: {
     fontSize: 16,
+    fontWeight: 'bold',
     margin: 5,
+    paddingTop: 5,
   },
+  input: {
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 2,
+    height: 40,
+    width: 200,
+  }
 });

@@ -32,7 +32,8 @@ const Main = StackNavigator({
     screen: SearchMain,
     path: '/main/:id',
     navigationOptions: {
-      title: 'Browse Locations',
+      // title: 'Browse Locations',
+      title: 'GOLOCAL'
     },
   },
   LocationProfile: {

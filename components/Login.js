@@ -84,8 +84,8 @@ export default class Login extends React.Component {
       <View style={styles.background}>
         <View style={styles.container}>
           <Image
-            style={{width: 40, height: 40}}
-            source={require('../assets/mapcheck.png')}
+            style={{width: 45, height: 45}}
+            source={require('../assets/mapcheck2.png')}
           />
           <Text style={styles.header}>GOLOCAL</Text>
         </View>
@@ -129,12 +129,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    paddingTop: 20,
+    paddingTop: 40,
     paddingBottom: 20,
   },
   header: {
     textAlign: 'center',
-    fontSize: 32,
+    fontSize: 38,
     fontWeight: 'bold',
   },
   loginImage: {
@@ -145,6 +145,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: 20,
   },
   button: {
     backgroundColor: '#000',

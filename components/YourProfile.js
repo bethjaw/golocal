@@ -14,8 +14,7 @@ export default class YourProfile extends React.Component {
   }
 
   render() {
-    // console.log('yourprof', this.props)
-    // .screenProps.currentUser);
+    // console.log('yourprof', this.props.screenProps.currentUser);
     return (
       <View style={styles.background}>
         <View style={styles.container}>
@@ -36,10 +35,16 @@ export default class YourProfile extends React.Component {
         </ScrollView>
         <Text style={styles.titles}>Where You've Been</Text>
         <YourPlaces />
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('AddLocation')}>
-          <Text>Add a location!</Text>
-        </TouchableOpacity>
+        <View>
+          {this.props.screenProps.currentUser.map((user) =>
+          <TouchableOpacity
+            key={user.id}
+            onPress={() => this.props.navigation.navigate('AddLocation', {user_id:`${user.id}`}
+            )}>
+            <Text>Add a location!</Text>
+          </TouchableOpacity>
+            )}
+          </View>
       </View>
     </View>
     )
