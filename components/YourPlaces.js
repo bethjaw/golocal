@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, RefreshControl } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Button, RefreshControl } from 'react-native';
 import LocationProfile from './LocationProfile'
-
+import AddLocation from './AddLocation'
 
 export default class YourPlaces extends React.Component {
   constructor(props){
@@ -18,15 +18,8 @@ export default class YourPlaces extends React.Component {
       this.setState({places: json})
   }
 
-  // onAddLocation = (e) => {
-  //   this.setState({
-  //     places:
-  //   })
-  // }
-
-
   render() {
-    // console.log('places page', this.state.places);
+    // console.log('places page', this.state);
     // console.log('places props', this.props.navigate.navigate);
     return (
       <View style={styles.mainContainer}>
@@ -42,6 +35,14 @@ export default class YourPlaces extends React.Component {
               </TouchableOpacity>
             )}
           </ScrollView>
+        </View>
+
+        <View>
+          <TouchableOpacity style={styles.button}
+            onPress={() => this.props.navigate.navigate('AddLocation', {user_id: this.props.user_id, placesReload: this.componentDidMount.bind(this) })}
+            >
+            <Text style={styles.btnText}>Add a location!</Text>
+          </TouchableOpacity>
         </View>
       </View>
     )
@@ -60,7 +61,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    // paddingTop: 45,
     paddingBottom: 20,
   },
   contentContainer: {
@@ -71,5 +71,17 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     paddingRight: 10,
     fontSize: 16,
+  },
+  button: {
+    backgroundColor: '#000',
+    borderRadius: 5,
+    padding: 10,
+    width: 150,
+    margin: 5,
+  },
+  btnText: {
+    color: '#FFF',
+    textAlign: 'center',
+    fontSize: 14,
   },
 });

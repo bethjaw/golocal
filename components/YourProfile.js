@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, RefreshControl } from 'react-native';
 import YourConnects from './YourConnects'
 import YourPlaces from './YourPlaces'
 import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
@@ -12,8 +12,9 @@ export default class YourProfile extends React.Component {
 
   }
 
+
   render() {
-    // console.log('yourprof', this.props.navigation);
+    // console.log('yourprof', this.props.screenProps);
     // console.log('profile', this.state);
     return (
       <View style={styles.background}>
@@ -36,7 +37,8 @@ export default class YourProfile extends React.Component {
           {this.props.screenProps.currentUser.map(userId =>
           <YourPlaces key={userId.id} user_id={userId.id} navigate={this.props.navigation}/>
           )}
-        <View>
+
+        {/* <View>
           {this.props.screenProps.currentUser.map((user) =>
           <TouchableOpacity
             key={user.id}
@@ -45,7 +47,7 @@ export default class YourProfile extends React.Component {
             <Text>Add a location!</Text>
           </TouchableOpacity>
             )}
-          </View>
+          </View> */}
       </View>
     </View>
     )

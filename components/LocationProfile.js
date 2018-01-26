@@ -1,7 +1,19 @@
 import React from 'react'
-import { View, Image, StyleSheet, Text, ScrollView, TouchableOpacity, Button} from 'react-native'
+import { View,
+  Image,
+  StyleSheet,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  Button,
+  ImagePickerIOS,
+} from 'react-native'
+
+
 import ToDo from './ToDo'
 import GenRecs from './GenRecs'
+// import AddImage from './AddImage'
+import MapTest from './MapTest'
 
 
 export default class LocationProfile extends React.Component {
@@ -13,18 +25,23 @@ export default class LocationProfile extends React.Component {
     }
   }
 
+
   async componentDidMount(){
     const response = await fetch(`https://golocalapi.herokuapp.com/api/location/${this.props.navigation.state.params.id}`)
     const json = await response.json()
-      this.setState({currentLocation: json})
+      this.setState({
+        currentLocation: json,
+      })
   }
+
+
 
   render(){
     // console.log(this.props.navigation.state.params)
     // console.log('state', this.state.currentLocation)
     return (
       <View style={styles.background}>
-        <ScrollView>
+        <ScrollView contentContainerStyle={styles.contentContainer}>
           <Image
             style={styles.icon}
             source={require('../assets/mapcheck2.png')}
@@ -40,6 +57,7 @@ export default class LocationProfile extends React.Component {
                 style={{width: 380, height: 280}}
                 source={{uri: details.location_image}}
               />
+
               <Text style={styles.SectionTitle}>Transportation</Text>
               <Text style={styles.Details}>{details.transportation}</Text>
               </View>
@@ -50,6 +68,9 @@ export default class LocationProfile extends React.Component {
           <View>
             <GenRecs currentLocation={this.props.navigation.state.params}/>
           </View>
+
+          {/* <MapTest /> */}
+
         </ScrollView>
       </View>
     )
@@ -60,6 +81,11 @@ const styles = StyleSheet.create({
   background: {
     backgroundColor: '#fff',
     height: 700,
+    flex: 1,
+  },
+  contentContainer: {
+    top: 0,
+    bottom: 70,
   },
   LocationTitle: {
     fontSize: 22,
@@ -96,5 +122,19 @@ const styles = StyleSheet.create({
     top: 8,
     bottom: 4,
     right: 8,
-  }
+  },
+  addImage: {
+    textAlign: 'center',
+    color: '#FFF',
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  imageContainer: {
+    width: 310,
+    borderWidth: 1,
+    borderRadius: 5,
+    marginTop: 5,
+    marginLeft: 30,
+    backgroundColor: '#000',
+  },
 });

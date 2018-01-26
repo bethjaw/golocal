@@ -9,9 +9,11 @@ import {
   TextInput,
   Button,
   Alert,
+  ImagePickerIOS,
 } from 'react-native';
 import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
 import NavTabs from './NavTabs'
+import AddImage from './AddImage'
 
 export default class AddLocation extends React.Component {
   constructor(props){
@@ -23,6 +25,7 @@ export default class AddLocation extends React.Component {
       transportation: '',
       user_id: this.props.navigation.state.params.user_id,
       message: '',
+      location_image: ''
     }
   }
 
@@ -37,16 +40,61 @@ export default class AddLocation extends React.Component {
         location: this.state.location,
         country: this.state.country,
         transportation: this.state.transportation,
-        user_id: this.state.user_id
+        user_id: this.state.user_id,
+        location_image: this.state.location_image
       }),
     })
-    this.setState({message: 'Your location was added! Head back to your profile and add some to dos!'})
+
+    this.props.navigation.state.params.placesReload()
+
+    this.setState({
+      message: 'Your location was added! Head back to your profile and add some to dos!'
+    })
   }
 
+
+  uploadImage(){
+    let serverURL = 'https://golocalapi.herokuapp.com/aws'
+    fetch(serverURL)
+      .then(res => res.json())
+      .then(response => {
+        console.log(response.url, response.id)
+        ImagePickerIOS.openSelectDialog({}, imageUri => {
+          const xhr = new XMLHttpRequest()
+          xhr.open('PUT', response.url)
+          xhr.onreadystatechange = function() {
+              if (xhr.readyState === 4) {
+                  if (xhr.status === 200) {
+                  console.log('Image successfully uploaded to S3')
+              } else {
+                console.log(xhr);
+                  console.log('Error while sending the image to S3')
+                }
+              }
+            }
+          xhr.setRequestHeader('Content-Type', 'image/jpeg')
+          xhr.send({
+            uri: imageUri,
+            type: 'image/jpeg',
+            name: response.id + '.jpg',
+            })
+          }, error => console.log(error));
+
+          this.setState({
+            location_image: 'https://golocal-capstone.s3.us-east-2.amazonaws.com/' + response.id + '.jpg',
+          })
+
+      })
+      .catch(console.log)
+    }
+
+
+
+
   render(){
-    // console.log(this.props.navigation.state.params.user_id);
-    // console.log('user', this.state);
-    // console.log('user', this.props);
+    // console.log(this.props.navigation.state.params);
+    console.log('user state', this.state);
+    // console.log('user props', this.props);
     return (
       <View style={styles.background}>
         <View style={styles.formContainer}>
@@ -71,7 +119,14 @@ export default class AddLocation extends React.Component {
             onChangeText={(transportation) => this.setState({transportation})}
             value={this.state.transportation}
           />
-          <Text>Image</Text>
+
+          {/* <AddImage /> */}
+          <TouchableOpacity style={styles.imageContainer}
+            onPress={() => this.uploadImage()}
+            >
+            <Text style={styles.addImage}>Upload Image</Text>
+          </TouchableOpacity>
+
           <TouchableOpacity
             style={styles.button}
             onPress={() => this.addLocation()}>
@@ -92,7 +147,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     height: 700,
     alignItems: 'center',
-    // justifyContent: 'center',
   },
   input: {
     height: 40,
@@ -124,5 +178,18 @@ const styles = StyleSheet.create({
   },
   messageCont: {
     width: 200,
-  }
+  },
+  addImage: {
+    textAlign: 'center',
+    color: '#FFF',
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  imageContainer: {
+    width: 200,
+    borderWidth: 1,
+    borderRadius: 5,
+    marginTop: 5,
+    backgroundColor: '#000',
+  },
 })

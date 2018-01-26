@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
   background: {
     backgroundColor: '#fff',
     height: 700,
+    flex: 1,
   },
   container: {
     backgroundColor: '#fff',
@@ -108,9 +109,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff',
-    // top: 0,
-    // bottom: 50,
-    height: 800,
+    top: 0,
+    bottom: 50,
+    // height: 800,
   },
   location: {
     borderColor: 'gray',
