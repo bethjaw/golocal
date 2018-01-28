@@ -64,7 +64,6 @@ export default class SearchMain extends React.Component {
                 onPress={() => this.props.navigation.navigate('LocationProfile', { name: `${location.location}`, id: `${location.id}`, currentUser: this.state.currentUser})}>
                 <Image
                   style={{width: 200, height: 150}}
-                  // resizeMode='cover'
                   source={{uri: location.location_image }}
                 />
                 <View>
@@ -118,7 +117,6 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     margin: 2,
     width: 370,
-    // width: 350,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -138,7 +136,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     margin: 5,
-    // paddingTop: 5,
     paddingBottom: 5,
   },
   input: {

@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   TextInput,
   Button,
-  // StatusBar,
+  Alert,
 } from 'react-native';
 
 export default class AddToDo extends React.Component {
@@ -19,7 +19,6 @@ export default class AddToDo extends React.Component {
       title: '',
       details: '',
       location_id: this.props.navigation.state.params.location_id,
-      message: ''
     }
   }
 
@@ -37,18 +36,21 @@ export default class AddToDo extends React.Component {
       }),
     })
 
-    // this.props.navigation.state.params.reload()
-
     this.setState({
-      message: 'Added! Can\'t wait to do all the things - Feel free to add another, or 5...',
       title: '',
       details: '',
     })
+
+    Alert.alert(
+        'Added!',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        { cancelable: false }
+      )
   }
 
   render(){
-    // console.log('add todo state', this.state);
-    // console.log('add todo props', this.props.navigation.state.params);
     return(
       <View style={styles.background}>
         <Text>What To Do</Text>
@@ -74,9 +76,9 @@ export default class AddToDo extends React.Component {
             <Text style={styles.btnText}>Add</Text>
           </TouchableOpacity>
 
-          <View style={styles.messageCont}>
+          {/* <View style={styles.messageCont}>
             <Text style={styles.message}>{this.state.message}</Text>
-          </View>
+          </View> */}
 
       </View>
     )

@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   TextInput,
   Button,
-  // StatusBar,
+  Alert,
 } from 'react-native';
 
 export default class AddGenRec extends React.Component {
@@ -19,7 +19,6 @@ export default class AddGenRec extends React.Component {
       tip: '',
       advice: '',
       location_id: this.props.navigation.state.params.location_id,
-      message: ''
     }
   }
 
@@ -37,17 +36,21 @@ async addGenRec(){
     }),
   })
 
-  // this.props.navigation.state.params.reload()
-
   this.setState({
-    message: 'Added!  More to share?  Please do!',
     tip: '',
     advice: '',
   })
+
+  Alert.alert(
+      'Added!',
+      [
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ],
+      { cancelable: false }
+    )
 }
 
   render(){
-    // console.log(this.state);
     return(
       <View style={styles.background}>
         <Text>Share you're best tips!</Text>

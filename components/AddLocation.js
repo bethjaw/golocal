@@ -92,6 +92,12 @@ export default class AddLocation extends React.Component {
     }
 
 
+    // renderImage(){
+    //   if(this.state.location_image !== ''){
+    //     return <Image style={{width: 280, height: 180}}
+    //     source={{uri: this.state.location_image}}/>
+    //   }
+    // }
 
 
   render(){
@@ -123,12 +129,15 @@ export default class AddLocation extends React.Component {
             value={this.state.transportation}
           />
 
-          {/* <AddImage /> */}
           <TouchableOpacity style={styles.imageContainer}
             onPress={() => this.uploadImage()}
             >
             <Text style={styles.addImage}>Upload Image</Text>
           </TouchableOpacity>
+          
+          <Text style={styles.note}>*there is preview of the image at this time</Text>
+
+          {/* {this.renderImage()} */}
 
           <TouchableOpacity
             style={styles.button}
@@ -142,7 +151,6 @@ export default class AddLocation extends React.Component {
         </View>
     )
   }
-
 }
 
 const styles = StyleSheet.create({
@@ -195,4 +203,8 @@ const styles = StyleSheet.create({
     marginTop: 5,
     backgroundColor: '#000',
   },
+  note: {
+    fontSize: 10,
+    margin: 5,
+  }
 })

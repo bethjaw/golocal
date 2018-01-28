@@ -6,7 +6,7 @@ import {
   ScrollView,
 } from 'react-native'
 
-export default class ToDo extends React.Component {
+export default class GenRecs extends React.Component {
   constructor(props){
     super(props)
 

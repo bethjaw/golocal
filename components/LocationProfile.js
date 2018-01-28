@@ -7,9 +7,11 @@ import { View,
   TouchableOpacity,
   Button,
   ImagePickerIOS,
+  RefreshControl,
 } from 'react-native'
 import ToDo from './ToDo'
 import GenRecs from './GenRecs'
+import AddToBucketList from './AddToBucketList'
 
 
 export default class LocationProfile extends React.Component {
@@ -17,10 +19,17 @@ export default class LocationProfile extends React.Component {
     super(props)
 
     this.state = {
-      currentLocation: []
+      currentLocation: [],
+      refreshing: false,
     }
   }
 
+  _onRefresh() {
+    this.setState({refreshing: true});
+    this.componentDidMount().then(() => {
+      this.setState({refreshing: false});
+    });
+  }
 
   async componentDidMount(){
     const response = await fetch(`https://golocalapi.herokuapp.com/api/location/${this.props.navigation.state.params.id}`)
@@ -33,11 +42,15 @@ export default class LocationProfile extends React.Component {
 
 
   render(){
-    // console.log('location', this.props.navigation.state.params.currentUser)
-    // console.log('state', this.state.currentLocation)
     return (
       <View style={styles.background}>
-        <ScrollView contentContainerStyle={styles.contentContainer}>
+        <ScrollView
+          refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh.bind(this)}
+            />}
+          contentContainerStyle={styles.contentContainer}>
           <Image
             style={styles.icon}
             source={require('../assets/mapcheck2.png')}
@@ -45,41 +58,34 @@ export default class LocationProfile extends React.Component {
           {this.state.currentLocation.map(details =>
             <View style={styles.Border} key={details.id}>
               <Text style={styles.LocationTitle}>{details.location}, {details.country}</Text>
-              <Image
-                style={styles.iconPlus}
-                source={require('../assets/plus2.png')}
-              />
+
+              <AddToBucketList props={this.state.currentLocation}/>
+
               <Image
                 style={{width: 380, height: 280}}
-                source={{uri: details.location_image}}
-              />
-
+                source={{uri: details.location_image}} />
               <Text style={styles.SectionTitle}>
                 {'Transportation'.toUpperCase()}</Text>
               <Text style={styles.Details}>{details.transportation}</Text>
-              </View>
-            )}
+            </View>
+              )}
           <View>
             <ToDo currentLocation={this.props.navigation.state.params}/>
           </View>
-
           <View>
             <GenRecs currentLocation={this.props.navigation.state.params}/>
           </View>
 
-
           <View style={styles.btncontain}>
             <TouchableOpacity style={styles.button}
               onPress={() => this.props.navigation.navigate('AddToDo', {location_id: this.props.navigation.state.params.id,
-              reload: this.componentDidMount.bind(this) })}
-                >
+              reload: this.componentDidMount.bind(this) })}>
                 <Text style={styles.btnText}>Add To Do</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.button}
               onPress={() => this.props.navigation.navigate('AddGenRec', {location_id: this.props.navigation.state.params.id, reload: this.componentDidMount.bind(this)
-              })}
-              >
+              })}>
               <Text style={styles.btnText}>Add Recommendation</Text>
             </TouchableOpacity>
           </View>
