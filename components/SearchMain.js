@@ -22,6 +22,7 @@ export default class SearchMain extends React.Component {
     this.state = {
       locationData: [],
       currentLocation: [],
+      currentUser: 1,
     }
   }
 
@@ -33,9 +34,6 @@ export default class SearchMain extends React.Component {
   }
 
   render() {
-    // console.log('mainsearch', this.props);
-    // console.log('locationData', this.state.locationData)
-    // console.log('currentLocation', this.state.currentLocation);
     return (
       <View style={styles.background}>
         <View style={styles.container}>
@@ -43,10 +41,9 @@ export default class SearchMain extends React.Component {
             style={{width: 50, height: 50}}
             source={require('../assets/mapcheck2.png')}
           />
-          {/* <Text style={styles.header}>GOLOCAL</Text> */}
         </View>
         <View style={styles.search}>
-          <Text style={styles.searchTitle}>Search By Connection</Text>
+          {/* <Text style={styles.searchTitle}>Search By Connection</Text>
           <TextInput
             style={styles.input}
             placeholder='Megan...'
@@ -55,23 +52,26 @@ export default class SearchMain extends React.Component {
           <TextInput
             style={styles.input}
             placeholder='San Francisco, Iceland...'
-          />
-          <Text style={styles.searchTitle}>Browse All Locations</Text>
+          /> */}
+          <Text style={styles.searchTitle}>{'Browse Locations'.toUpperCase()}</Text>
         </View>
           <ScrollView contentContainerStyle={styles.contentContainer}>
             {this.state.locationData.map((location) =>
               <TouchableOpacity
                 style={styles.location}
+
                 key={location.id}
-                onPress={() => this.props.navigation.navigate('LocationProfile', { name: `${location.location}`, id: `${location.id}`})}>
+                onPress={() => this.props.navigation.navigate('LocationProfile', { name: `${location.location}`, id: `${location.id}`, currentUser: this.state.currentUser})}>
                 <Image
                   style={{width: 200, height: 150}}
+                  // resizeMode='cover'
                   source={{uri: location.location_image }}
                 />
-                <View style={styles.text}>
+                <View>
                   <Text style={styles.textLocation}>{location.location}</Text>
                   <Text style={styles.textPerson}>{location.name}</Text>
                 </View>
+
               </TouchableOpacity>
             )}
         </ScrollView>
@@ -111,17 +111,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     top: 0,
     bottom: 50,
-    // height: 800,
   },
   location: {
-    borderColor: 'gray',
-    borderWidth: 1,
+    borderColor: 'whitesmoke',
+    borderWidth: 2,
     borderRadius: 2,
-    margin: 3,
-    // borderBottomWidth: .25,
-    // borderTopWidth: 1,
-    // width: 378,
-    width: 350,
+    margin: 2,
+    width: 370,
+    // width: 350,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -131,7 +128,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingRight: 40,
     fontSize: 16,
-
   },
   textPerson: {
     textAlign: 'center',
@@ -139,10 +135,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   searchTitle: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     margin: 5,
-    paddingTop: 5,
+    // paddingTop: 5,
+    paddingBottom: 5,
   },
   input: {
     borderColor: 'gray',

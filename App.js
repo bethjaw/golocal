@@ -15,10 +15,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import NavTabs from './components/NavTabs'
 import SearchMain from './components/SearchMain'
-// import YourProfile from './components/YourProfile'
-// import Bucketlist from './components/Bucketlist'
 import Login from './components/Login'
-import CameraRollPicker from './components/CameraRollPicker'
 
 
 export default class App extends React.Component {
@@ -36,7 +33,7 @@ export default class App extends React.Component {
     // $this.props.currentUser.id
     const json = await response.json()
 
-    Font.loadAsync({
+    await Font.loadAsync({
         'roboto': require('./assets/fonts/Roboto/Roboto-Regular.ttf'),
       });
 

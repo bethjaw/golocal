@@ -8,12 +8,8 @@ import { View,
   Button,
   ImagePickerIOS,
 } from 'react-native'
-
-
 import ToDo from './ToDo'
 import GenRecs from './GenRecs'
-// import AddImage from './AddImage'
-import MapTest from './MapTest'
 
 
 export default class LocationProfile extends React.Component {
@@ -29,15 +25,15 @@ export default class LocationProfile extends React.Component {
   async componentDidMount(){
     const response = await fetch(`https://golocalapi.herokuapp.com/api/location/${this.props.navigation.state.params.id}`)
     const json = await response.json()
+
       this.setState({
         currentLocation: json,
       })
   }
 
 
-
   render(){
-    // console.log(this.props.navigation.state.params)
+    // console.log('location', this.props.navigation.state.params.currentUser)
     // console.log('state', this.state.currentLocation)
     return (
       <View style={styles.background}>
@@ -47,7 +43,7 @@ export default class LocationProfile extends React.Component {
             source={require('../assets/mapcheck2.png')}
           />
           {this.state.currentLocation.map(details =>
-            <View key={details.id}>
+            <View style={styles.Border} key={details.id}>
               <Text style={styles.LocationTitle}>{details.location}, {details.country}</Text>
               <Image
                 style={styles.iconPlus}
@@ -58,18 +54,35 @@ export default class LocationProfile extends React.Component {
                 source={{uri: details.location_image}}
               />
 
-              <Text style={styles.SectionTitle}>Transportation</Text>
+              <Text style={styles.SectionTitle}>
+                {'Transportation'.toUpperCase()}</Text>
               <Text style={styles.Details}>{details.transportation}</Text>
               </View>
             )}
           <View>
             <ToDo currentLocation={this.props.navigation.state.params}/>
           </View>
+
           <View>
             <GenRecs currentLocation={this.props.navigation.state.params}/>
           </View>
 
-          {/* <MapTest /> */}
+
+          <View style={styles.btncontain}>
+            <TouchableOpacity style={styles.button}
+              onPress={() => this.props.navigation.navigate('AddToDo', {location_id: this.props.navigation.state.params.id,
+              reload: this.componentDidMount.bind(this) })}
+                >
+                <Text style={styles.btnText}>Add To Do</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.button}
+              onPress={() => this.props.navigation.navigate('AddGenRec', {location_id: this.props.navigation.state.params.id, reload: this.componentDidMount.bind(this)
+              })}
+              >
+              <Text style={styles.btnText}>Add Recommendation</Text>
+            </TouchableOpacity>
+          </View>
 
         </ScrollView>
       </View>
@@ -100,10 +113,16 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     textAlign: 'left',
     marginTop: 8,
+    marginBottom: 8,
+  },
+  Border: {
+    borderBottomWidth: 2,
+    borderColor: 'whitesmoke',
   },
   SectionTitle: {
     paddingTop: 10,
     fontWeight: 'bold',
+    fontSize: 16,
     paddingLeft: 30,
   },
   icon: {
@@ -137,4 +156,21 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     backgroundColor: '#000',
   },
+  button: {
+    backgroundColor: '#000',
+    borderRadius: 5,
+    padding: 10,
+    width: 160,
+    margin: 5,
+  },
+  btnText: {
+    color: '#FFF',
+    textAlign: 'center',
+    fontSize: 14,
+  },
+  btncontain: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    margin: 5,
+  }
 });

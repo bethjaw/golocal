@@ -25,12 +25,12 @@ export default class ToDo extends React.Component {
   render(){
     // console.log('todo', this.state.todo);
     return (
-      <View>
+      <View style={styles.Border}>
         <ScrollView>
-          <Text style={styles.SectionTitle}>What To Do</Text>
+          <Text style={styles.SectionTitle}>{'What To Do'.toUpperCase()}</Text>
           {this.state.todo.map(todos =>
             <View key={todos.id}>
-              <Text style={styles.Details}>{todos.title}</Text>
+              <Text style={styles.Title}>{todos.title}</Text>
               <Text style={styles.Details}>{todos.details}</Text>
               </View>
             )}
@@ -48,10 +48,23 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     textAlign: 'left',
     marginTop: 8,
+    marginBottom: 8,
   },
   SectionTitle: {
     paddingTop: 10,
     fontWeight: 'bold',
+    fontSize: 16,
     paddingLeft: 30,
-  }
+  },
+  Title: {
+    paddingLeft: 30,
+    paddingRight: 20,
+    textAlign: 'left',
+    marginTop: 8,
+    fontWeight: 'bold',
+  },
+  Border: {
+    borderBottomWidth: 2,
+    borderColor: 'whitesmoke',
+  },
 });

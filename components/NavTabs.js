@@ -21,7 +21,8 @@ import LocationProfile from './LocationProfile'
 import Login from './Login'
 import ConnectionProfile from './ConnectionProfile'
 import AddLocation from './AddLocation'
-
+import AddToDo from './AddToDo'
+import AddGenRec from './AddGenRec'
 
 const Main = StackNavigator({
   // Login: {
@@ -38,6 +39,12 @@ const Main = StackNavigator({
   LocationProfile: {
     screen: LocationProfile,
     path: '/location/:name',
+  },
+  AddToDo: {
+    screen: AddToDo,
+  },
+  AddGenRec: {
+    screen: AddGenRec,
   },
 });
 
@@ -60,6 +67,12 @@ const ProfileTab = StackNavigator({
   LocationProfile: {
     screen: LocationProfile,
     path: '/location/:name',
+  },
+  AddToDo: {
+    screen: AddToDo,
+  },
+  AddGenRec: {
+    screen: AddGenRec,
   },
 });
 

@@ -26,10 +26,10 @@ export default class ToDo extends React.Component {
     return (
       <View>
         <ScrollView>
-          <Text style={styles.SectionTitle}>General Recommendations</Text>
+          <Text style={styles.SectionTitle}>{'General Recommendations'.toUpperCase()}</Text>
           {this.state.genrecs.map(recs =>
             <View key={recs.id}>
-              <Text style={styles.Details}>{recs.tip}</Text>
+              <Text style={styles.Tip}>{recs.tip}</Text>
               <Text style={styles.Details}>{recs.advice}</Text>
               </View>
             )}
@@ -50,6 +50,14 @@ const styles = StyleSheet.create({
   SectionTitle: {
     paddingTop: 10,
     fontWeight: 'bold',
+    fontSize: 16,
     paddingLeft: 30,
-  }
+  },
+  Tip: {
+    paddingLeft: 30,
+    paddingRight: 20,
+    textAlign: 'left',
+    marginTop: 8,
+    fontWeight: 'bold',
+  },
 });

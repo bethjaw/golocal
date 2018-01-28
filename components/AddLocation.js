@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
 import NavTabs from './NavTabs'
-import AddImage from './AddImage'
 
 export default class AddLocation extends React.Component {
   constructor(props){
@@ -48,7 +47,11 @@ export default class AddLocation extends React.Component {
     this.props.navigation.state.params.placesReload()
 
     this.setState({
-      message: 'Your location was added! Head back to your profile and add some to dos!'
+      message: 'Added! Add another or head back to see it and add some to dos or recommendations!',
+      location: '',
+      country: '',
+      transportation: '',
+      location_image: '',
     })
   }
 

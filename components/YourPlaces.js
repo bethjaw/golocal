@@ -28,7 +28,7 @@ export default class YourPlaces extends React.Component {
             {this.state.places.map(place =>
               <TouchableOpacity
                 key={place.id}
-                onPress={() => this.props.navigate.navigate('LocationProfile', {id:`${place.id}`}
+                onPress={() => this.props.navigate.navigate('LocationProfile', {id:`${place.id}`, reload: this.componentDidMount.bind(this)}
                 )}
                 >
                 <Text style={styles.text}>{place.location}, {place.country}</Text>
