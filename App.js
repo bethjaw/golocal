@@ -14,10 +14,6 @@ import { Font } from 'expo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import NavTabs from './components/NavTabs'
-import SearchMain from './components/SearchMain'
-import Login from './components/Login'
-
-
 
 
 export default class App extends React.Component {
