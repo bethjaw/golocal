@@ -121,15 +121,17 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 8,
   },
-  Border: {
-    borderBottomWidth: 2,
-    borderColor: 'whitesmoke',
-  },
+  // Border: {
+  //   borderBottomWidth: 2,
+  //   borderColor: 'whitesmoke',
+  // },
   SectionTitle: {
     paddingTop: 10,
     fontWeight: 'bold',
     fontSize: 16,
     paddingLeft: 30,
+    backgroundColor: 'whitesmoke',
+    paddingBottom: 10,
   },
   icon: {
     width: 42,

@@ -101,13 +101,11 @@ export default class AddLocation extends React.Component {
 
 
   render(){
-    // console.log(this.props.navigation.state.params);
-    console.log('user state', this.state);
-    // console.log('user props', this.props);
     return (
       <View style={styles.background}>
         <View style={styles.formContainer}>
-          <Text>Enter Location</Text>
+          <Text style={styles.textTop}>Where have you been?</Text>
+          <Text>Location</Text>
           <TextInput
             style={styles.input}
             placeholder='London, Denver...'
@@ -129,13 +127,13 @@ export default class AddLocation extends React.Component {
             value={this.state.transportation}
           />
 
-          <TouchableOpacity style={styles.imageContainer}
+          <TouchableOpacity style={styles.button2}
             onPress={() => this.uploadImage()}
             >
             <Text style={styles.addImage}>Upload Image</Text>
           </TouchableOpacity>
-          
-          <Text style={styles.note}>*there is preview of the image at this time</Text>
+
+          <Text style={styles.note}>*there is no preview of the image at this time</Text>
 
           {/* {this.renderImage()} */}
 
@@ -159,6 +157,12 @@ const styles = StyleSheet.create({
     height: 700,
     alignItems: 'center',
   },
+  textTop: {
+    marginTop: 10,
+    marginBottom: 10,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
   input: {
     height: 40,
     width: 200,
@@ -172,6 +176,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     width: 150,
+    margin: 5,
+  },
+  button2: {
+    backgroundColor: 'whitesmoke',
+    borderRadius: 5,
+    padding: 10,
+    width: 200,
     margin: 5,
   },
   btnText: {
@@ -192,16 +203,6 @@ const styles = StyleSheet.create({
   },
   addImage: {
     textAlign: 'center',
-    color: '#FFF',
-    paddingTop: 10,
-    paddingBottom: 10,
-  },
-  imageContainer: {
-    width: 200,
-    borderWidth: 1,
-    borderRadius: 5,
-    marginTop: 5,
-    backgroundColor: '#000',
   },
   note: {
     fontSize: 10,

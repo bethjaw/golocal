@@ -53,8 +53,11 @@ const styles = StyleSheet.create({
   SectionTitle: {
     paddingTop: 10,
     fontWeight: 'bold',
+    // textAlign: 'center',
     fontSize: 16,
     paddingLeft: 30,
+    backgroundColor: 'whitesmoke',
+    paddingBottom: 10,
   },
   Title: {
     paddingLeft: 30,
@@ -63,8 +66,8 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontWeight: 'bold',
   },
-  Border: {
-    borderBottomWidth: 2,
-    borderColor: 'whitesmoke',
-  },
+  // Border: {
+  //   borderBottomWidth: 2,
+  //   borderColor: 'whitesmoke',
+  // },
 });

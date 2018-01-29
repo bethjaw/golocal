@@ -35,12 +35,12 @@ export default class SignUp extends React.Component {
         />
         <TouchableOpacity
           // onPress={this.toggleSignIn}
-          style={styles.button}>
-          <Text style={styles.btnText}>Create Account</Text>
+          style={styles.button2}>
+          <Text style={styles.btnText2}>Create Account</Text>
         </TouchableOpacity>
         <TouchableOpacity
           // onPress={this.toggleSignIn}
-          style={styles.button}>
+          style={styles.button3}>
           <Text style={styles.btnText}>Sign Up with Gmail</Text>
         </TouchableOpacity>
       </View>
@@ -52,18 +52,6 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
   },
-  button: {
-    backgroundColor: '#000',
-    borderRadius: 5,
-    padding: 10,
-    width: 150,
-    margin: 5,
-  },
-  btnText: {
-    color: '#FFF',
-    textAlign: 'center',
-    fontSize: 14,
-  },
   input: {
     height: 40,
     width: 200,
@@ -71,5 +59,28 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 2,
     margin: 5,
+  },
+  button2: {
+    backgroundColor: 'whitesmoke',
+    borderRadius: 5,
+    padding: 10,
+    width: 200,
+    margin: 5,
+  },
+  btnText2: {
+    textAlign: 'center',
+    fontSize: 14,
+  },
+  button3: {
+    backgroundColor: '#ea8787',
+    borderRadius: 5,
+    padding: 10,
+    width: 200,
+    margin: 5,
+  },
+  btnText: {
+    color: '#FFF',
+    textAlign: 'center',
+    fontSize: 14,
   },
 });

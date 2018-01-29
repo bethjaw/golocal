@@ -51,6 +51,7 @@ export default class AddToBucketList extends React.Component {
           style={styles.iconPlus}
           onPress={() => this.AddToBucketList()}>
           <Ionicons
+            // style={{color: '#ea8787'}}
             name={'ios-heart'}
             size={35}
           />

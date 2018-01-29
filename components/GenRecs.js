@@ -52,6 +52,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     paddingLeft: 30,
+    backgroundColor: 'whitesmoke',
+    paddingBottom: 10,
   },
   Tip: {
     paddingLeft: 30,

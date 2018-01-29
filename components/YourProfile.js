@@ -14,8 +14,6 @@ export default class YourProfile extends React.Component {
 
 
   render() {
-    // console.log('yourprof', this.props.screenProps);
-    // console.log('profile', this.state);
     return (
       <View style={styles.background}>
         <View style={styles.container}>
@@ -33,21 +31,12 @@ export default class YourProfile extends React.Component {
            contentContainerStyle={styles.contentContainer}>
           <YourConnects props={this.props}/>
         </ScrollView>
-          <Text style={styles.titles}>Where You've Been</Text>
+
+          <Text style={styles.titles}>{'Where You\'ve Been'.toUpperCase()}</Text>
           {this.props.screenProps.currentUser.map(userId =>
           <YourPlaces key={userId.id} user_id={userId.id} navigate={this.props.navigation}/>
           )}
 
-        {/* <View>
-          {this.props.screenProps.currentUser.map((user) =>
-          <TouchableOpacity
-            key={user.id}
-            onPress={() => this.props.navigation.navigate('AddLocation', {user_id:`${user.id}`}
-            )}>
-            <Text>Add a location!</Text>
-          </TouchableOpacity>
-            )}
-          </View> */}
       </View>
     </View>
     )
@@ -68,7 +57,9 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   titles: {
-    fontSize: 18,
+    fontSize: 16,
+    fontWeight: 'bold',
+    paddingTop: 10
   },
   contentContainer: {
     width: 300,
@@ -87,5 +78,6 @@ const styles = StyleSheet.create({
   name: {
     fontWeight: 'bold',
     fontSize: 16,
-  }
+  },
+
 });

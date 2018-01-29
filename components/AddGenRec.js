@@ -3,11 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
-  ScrollView,
   TouchableOpacity,
   TextInput,
-  Button,
   Alert,
 } from 'react-native';
 
@@ -19,6 +16,7 @@ export default class AddGenRec extends React.Component {
       tip: '',
       advice: '',
       location_id: this.props.navigation.state.params.location_id,
+      message: '',
     }
   }
 
@@ -39,21 +37,23 @@ async addGenRec(){
   this.setState({
     tip: '',
     advice: '',
+    message: 'Added!',
   })
 
-  Alert.alert(
-      'Added!',
-      [
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
-      ],
-      { cancelable: false }
-    )
+  // Alert.alert(
+  //     'Added!',
+  //     [
+  //       {text: 'OK', onPress: () => console.log('OK Pressed')},
+  //     ],
+  //     { cancelable: false }
+  //   )
 }
 
   render(){
     return(
       <View style={styles.background}>
-        <Text>Share you're best tips!</Text>
+        <Text style={styles.textTop}>Share your best tips!</Text>
+        <Text>What should we know?</Text>
         <TextInput
           style={styles.input}
           placeholder='Go places early or late; Carry Bear Spray'
@@ -91,6 +91,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     height: 700,
     alignItems: 'center',
+  },
+  textTop: {
+    marginTop: 10,
+    marginBottom: 10,
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   input: {
     height: 40,

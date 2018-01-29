@@ -26,8 +26,6 @@ export default class ConnectionProfile extends React.Component {
   }
 
   render(){
-    console.log('single state', this.state);
-    console.log('single props', this.props);
     return (
       <View style={styles.background}>
         <View style={styles.headContain}>
@@ -41,6 +39,7 @@ export default class ConnectionProfile extends React.Component {
         <View style={styles.container}>
            {this.state.location.map((details) =>
              <TouchableOpacity
+               style={styles.button}
                key={details.id}
                onPress={() => this.props.navigation.navigate('LocationProfile', {id:`${details.id}`} )}
                >
@@ -76,10 +75,18 @@ const styles = StyleSheet.create({
   },
   location: {
     fontSize: 14,
+    textAlign: 'center'
   },
   container: {
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10
-  }
+  },
+  button: {
+    backgroundColor: 'whitesmoke',
+    borderRadius: 5,
+    padding: 10,
+    width: 150,
+    margin: 5,
+  },
 });

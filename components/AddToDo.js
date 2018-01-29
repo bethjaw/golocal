@@ -3,11 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
-  ScrollView,
   TouchableOpacity,
   TextInput,
-  Button,
   Alert,
 } from 'react-native';
 
@@ -19,6 +16,7 @@ export default class AddToDo extends React.Component {
       title: '',
       details: '',
       location_id: this.props.navigation.state.params.location_id,
+      message: '',
     }
   }
 
@@ -39,21 +37,25 @@ export default class AddToDo extends React.Component {
     this.setState({
       title: '',
       details: '',
+      message: 'Added!',
     })
 
-    Alert.alert(
-        'Added!',
-        [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
-        { cancelable: false }
-      )
+    // Alert.alert(
+    //     'Added!',
+    //     [
+    //       {text: 'OK'
+    //       // , onPress: () => console.log('OK Pressed')
+    //     },
+    //     ],
+    //     { cancelable: false }
+    //   )
   }
 
   render(){
     return(
       <View style={styles.background}>
-        <Text>What To Do</Text>
+        <Text style={styles.textTop}>What should we do?</Text>
+        <Text>The thing to do</Text>
         <TextInput
           style={styles.input}
           placeholder='Road to Hana, Visit Wine Country'
@@ -76,9 +78,9 @@ export default class AddToDo extends React.Component {
             <Text style={styles.btnText}>Add</Text>
           </TouchableOpacity>
 
-          {/* <View style={styles.messageCont}>
+          <View style={styles.messageCont}>
             <Text style={styles.message}>{this.state.message}</Text>
-          </View> */}
+          </View>
 
       </View>
     )
@@ -90,6 +92,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     height: 700,
     alignItems: 'center',
+  },
+  textTop: {
+    marginTop: 10,
+    marginBottom: 10,
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   input: {
     height: 40,

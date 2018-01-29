@@ -46,11 +46,17 @@ export default class Bucketlist extends React.Component {
           />
           <Text style={styles.header}>{'Bucketlist'.toUpperCase()}</Text>
         </View>
-            <TouchableOpacity style={styles.location}>
-              {this.state.bucketlist.map((list) =>
-                <Text key={list.id} style={styles.details}>{list.location_location}, {list.location_country}</Text>
-              )}
-            </TouchableOpacity>
+
+        <View style={styles.list}>
+            {this.state.bucketlist.map((list) =>
+              <TouchableOpacity key={list.id}
+                  style={styles.location}
+                  // onPress={()}
+                  >
+                <Text  style={styles.button2}>{list.location_location}, {list.location_country}</Text>
+              </TouchableOpacity>
+            )}
+        </View>
       </ScrollView>
     )
   }
@@ -71,7 +77,17 @@ const styles = StyleSheet.create({
   location: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
+  },
+  list: {
+    marginTop: 10,
+  },
+  button2: {
+    backgroundColor: 'whitesmoke',
+    borderRadius: 5,
+    padding: 10,
+    width: 150,
+    margin: 5,
+    textAlign: 'center',
   },
   details: {
     fontSize: 16,

@@ -19,14 +19,13 @@ export default class YourPlaces extends React.Component {
   }
 
   render() {
-    // console.log('places page', this.state);
-    // console.log('places props', this.props.navigate.navigate);
     return (
       <View style={styles.mainContainer}>
         <View style={styles.container}>
           <ScrollView contentContainerStyle={styles.contentContainer}>
             {this.state.places.map(place =>
               <TouchableOpacity
+                style={styles.button2}
                 key={place.id}
                 onPress={() => this.props.navigate.navigate('LocationProfile', {id:`${place.id}`, reload: this.componentDidMount.bind(this)}
                 )}
@@ -62,15 +61,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     paddingBottom: 20,
+    paddingTop: 10,
   },
   contentContainer: {
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
-    textAlign: 'right',
-    paddingRight: 10,
-    fontSize: 16,
+    textAlign: 'center',
+    // paddingRight: 10,
+    fontSize: 14,
   },
   button: {
     backgroundColor: '#000',
@@ -83,5 +83,12 @@ const styles = StyleSheet.create({
     color: '#FFF',
     textAlign: 'center',
     fontSize: 14,
+  },
+  button2: {
+    backgroundColor: 'whitesmoke',
+    borderRadius: 5,
+    padding: 10,
+    width: 150,
+    margin: 5,
   },
 });

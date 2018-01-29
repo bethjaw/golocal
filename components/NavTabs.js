@@ -23,12 +23,18 @@ import ConnectionProfile from './ConnectionProfile'
 import AddLocation from './AddLocation'
 import AddToDo from './AddToDo'
 import AddGenRec from './AddGenRec'
+import SignIn from './SignIn'
+
 
 const Main = StackNavigator({
-  // Login: {
-  //   screen: Login,
-  //   path: '/',
-  // },
+  Login: {
+    screen: Login,
+    path: '/',
+  },
+  SignIn: {
+    screen: SignIn,
+    path: '/',
+  },
   Main: {
     screen: SearchMain,
     path: '/main/:id',

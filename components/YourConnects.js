@@ -29,7 +29,6 @@ export default class YourConnects extends React.Component {
   }
 
   render() {
-    // console.log('yourconnects', this.props.props);
     return (
       <View style={styles.mainContainer}>
         <View style={styles.container}>

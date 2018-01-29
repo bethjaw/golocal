@@ -59,18 +59,16 @@ export default class SearchMain extends React.Component {
             {this.state.locationData.map((location) =>
               <TouchableOpacity
                 style={styles.location}
-
                 key={location.id}
                 onPress={() => this.props.navigation.navigate('LocationProfile', { name: `${location.location}`, id: `${location.id}`, currentUser: this.state.currentUser})}>
                 <Image
                   style={{width: 200, height: 150}}
                   source={{uri: location.location_image }}
                 />
-                <View>
-                  <Text style={styles.textLocation}>{location.location}</Text>
+                <View style={styles.placeContainer}>
+                  <Text style={styles.textLocation}>{location.location}, {location.country}</Text>
                   <Text style={styles.textPerson}>{location.name}</Text>
                 </View>
-
               </TouchableOpacity>
             )}
         </ScrollView>
@@ -115,21 +113,26 @@ const styles = StyleSheet.create({
     borderColor: 'whitesmoke',
     borderWidth: 2,
     borderRadius: 2,
-    margin: 2,
-    width: 370,
+    margin: 5,
+    width: 360,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    shadowColor: 'lightgrey',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+  },
+  placeContainer:{
+    width: 155,
   },
   textLocation: {
     textAlign: 'center',
     fontWeight: 'bold',
-    paddingRight: 40,
     fontSize: 16,
   },
   textPerson: {
     textAlign: 'center',
-    paddingRight: 40,
     fontSize: 16,
   },
   searchTitle: {

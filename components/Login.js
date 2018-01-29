@@ -19,18 +19,18 @@ export default class Login extends React.Component {
     this.state = {
       signUp: false,
       logIn: false,
-      allUsers: [],
+      // allUsers: [],
       email: '',
       password: '',
       currentUser: [],
     }
   }
 
-  async componentDidMount(){
-    const response = await fetch('https://golocalapi.herokuapp.com/api/user')
-    const json = await response.json()
-      this.setState({allUsers: json})
-  }
+  // async componentDidMount(){
+  //   const response = await fetch('https://golocalapi.herokuapp.com/api/user')
+  //   const json = await response.json()
+  //     this.setState({allUsers: json})
+  // }
 
   toggleSignUp = () => {
     this.setState({
@@ -54,32 +54,32 @@ export default class Login extends React.Component {
 
   renderSignInForm(){
     if(this.state.logIn){
-      return <SignIn userLogin={this.checkUser}/>
+      // return <SignIn userLogin={this.checkUser}/>
+      return <SignIn props={this.props}/>
     } else {
       return
     }
   }
 
-  checkUser = (e) => {
-    e.preventDefault()
-    let userLogin = {
-      email: e.target.email.value,
-      password: e.target.password.value
-    }
-    let user = ''
-    for(var i=0; i < this.props.allUsers.length; i++){
-      if(this.props.allUsers[i].email === userLogin && this.props.allUsers[i].password === userLogin.password){
-        user = this.props.allUsers[i]
-      }
-    }
-    this.setState({
-      currentUser: user
-    })
-  }
+  // checkUser = (e) => {
+  //   e.preventDefault()
+  //   let userLogin = {
+  //     email: e.target.email.value,
+  //     password: e.target.password.value
+  //   }
+  //   let user = ''
+  //   for(var i=0; i < this.props.allUsers.length; i++){
+  //     if(this.props.allUsers[i].email === userLogin && this.props.allUsers[i].password === userLogin.password){
+  //       user = this.props.allUsers[i]
+  //     }
+  //   }
+  //   this.setState({
+  //     currentUser: user
+  //   })
+  // }
 
 
   render() {
-    console.log('login', this.state)
     return (
       <View style={styles.background}>
         <View style={styles.container}>
@@ -114,22 +114,16 @@ export default class Login extends React.Component {
 
 const styles = StyleSheet.create({
   background: {
+    flex: 1,
     backgroundColor: '#fff',
     height: 700,
   },
-  mainContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-  },
   container: {
-    // flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    paddingTop: 40,
+    paddingTop: 10,
     paddingBottom: 20,
   },
   header: {
@@ -151,7 +145,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     borderRadius: 5,
     padding: 10,
-    width: 150,
+    width: 200,
     margin: 5,
   },
   btnText: {
