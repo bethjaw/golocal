@@ -13,7 +13,6 @@ import ToDo from './ToDo'
 import GenRecs from './GenRecs'
 import AddToBucketList from './AddToBucketList'
 
-
 export default class LocationProfile extends React.Component {
   constructor(props){
     super(props)
@@ -42,6 +41,7 @@ export default class LocationProfile extends React.Component {
 
 
   render(){
+    console.log(this.state.currentLocation);
     return (
       <View style={styles.background}>
         <ScrollView
@@ -89,7 +89,6 @@ export default class LocationProfile extends React.Component {
               <Text style={styles.btnText}>Add Recommendation</Text>
             </TouchableOpacity>
           </View>
-
         </ScrollView>
       </View>
     )
@@ -121,10 +120,6 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 8,
   },
-  // Border: {
-  //   borderBottomWidth: 2,
-  //   borderColor: 'whitesmoke',
-  // },
   SectionTitle: {
     paddingTop: 10,
     fontWeight: 'bold',
@@ -180,5 +175,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     margin: 5,
-  }
+  },
+  button2: {
+    backgroundColor: 'whitesmoke',
+    borderRadius: 5,
+    padding: 10,
+    width: 330,
+    marginBottom: 5,
+    marginLeft: 22
+  },
+  btnText2: {
+    textAlign: 'center',
+    fontSize: 14,
+  },
 });

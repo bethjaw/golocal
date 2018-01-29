@@ -18,33 +18,26 @@ import SearchMain from './SearchMain'
 import YourProfile from './YourProfile'
 import Bucketlist from './Bucketlist'
 import LocationProfile from './LocationProfile'
-import Login from './Login'
 import ConnectionProfile from './ConnectionProfile'
 import AddLocation from './AddLocation'
 import AddToDo from './AddToDo'
 import AddGenRec from './AddGenRec'
-import SignIn from './SignIn'
 
 
 const Main = StackNavigator({
-  Login: {
-    screen: Login,
-    path: '/',
-  },
-  SignIn: {
-    screen: SignIn,
-    path: '/',
-  },
   Main: {
     screen: SearchMain,
     path: '/main/:id',
     navigationOptions: {
-      title: 'GOLOCAL'
+      // title: 'GOLOCAL'
     },
   },
   LocationProfile: {
     screen: LocationProfile,
     path: '/location/:name',
+  },
+  Map: {
+    screen: Map,
   },
   AddToDo: {
     screen: AddToDo,
@@ -81,6 +74,7 @@ const ProfileTab = StackNavigator({
     screen: AddGenRec,
   },
 });
+
 
 
 const NavTabs = TabNavigator({

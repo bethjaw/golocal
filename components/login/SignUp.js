@@ -51,6 +51,8 @@ export default class SignUp extends React.Component {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    backgroundColor: '#FFF',
+    height: 700,
   },
   input: {
     height: 40,

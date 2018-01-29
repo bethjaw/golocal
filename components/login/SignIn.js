@@ -12,6 +12,12 @@ export default class SignIn extends React.Component {
     }
   }
 
+  clearForm(){
+    this.setState({
+      email: '',
+      password: ''
+    })
+  }
 
   render(){
     return (
@@ -24,18 +30,19 @@ export default class SignIn extends React.Component {
         />
         <TextInput
           style={styles.input}
-          password={true}
+          secureTextEntry={true}
           placeholder='*******'
           onChangeText={(password) => this.setState({password})}
           value={this.state.password}
         />
         <TouchableOpacity
-          onPress={this.props.userLogin}
+          // onPress={this.props.userLogin}
+          onPress={() => this.props.props.navigation.navigate('Main', {reset: this.clearForm()})}
           style={styles.button2}>
           <Text style={styles.btnText2}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => this.props.props.navigation.navigate('Main')}
+          onPress={() => this.props.props.navigation.navigate('Main', {reset: this.clearForm()})}
           style={styles.button3}>
           <Text style={styles.btnText}>Login with Gmail</Text>
         </TouchableOpacity>

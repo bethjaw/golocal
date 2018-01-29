@@ -18,6 +18,8 @@ import SearchMain from './components/SearchMain'
 import Login from './components/Login'
 
 
+
+
 export default class App extends React.Component {
   constructor(props){
     super(props)
@@ -51,8 +53,6 @@ export default class App extends React.Component {
   // }
 
   render() {
-    // console.log('app', this.state)
-    // console.log('app', this.state.currentUser);
     return (
         <NavTabs screenProps={this.state}/>
     );

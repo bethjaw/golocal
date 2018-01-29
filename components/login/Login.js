@@ -80,6 +80,7 @@ export default class Login extends React.Component {
 
 
   render() {
+    console.log(this.props);
     return (
       <View style={styles.background}>
         <View style={styles.container}>
@@ -94,18 +95,21 @@ export default class Login extends React.Component {
           source={require('../assets/homeLogin.jpg')}
         />
         <ScrollView contentContainerStyle={styles.contentContainer}>
+          {/* <TouchableOpacity
+            // onPress={this.toggleSignIn}
+            // onPress={() => this.props.navigation.navigate('SignIn', {props: this.props})}
+            style={styles.button}>
+            <Text style={styles.btnText}>Sign In</Text>
+          </TouchableOpacity>
+          {this.renderSignInForm()} */}
+          <SignIn props={this.props}/>
           <TouchableOpacity
-            onPress={this.toggleSignUp}
+            // onPress={this.toggleSignUp}
+            onPress={() => this.props.navigation.navigate('SignUp')}
             style={styles.button}>
             <Text style={styles.btnText}>Sign Up</Text>
           </TouchableOpacity>
             {this.renderSignUpForm()}
-            <TouchableOpacity
-              onPress={this.toggleSignIn}
-              style={styles.button}>
-              <Text style={styles.btnText}>Sign In</Text>
-            </TouchableOpacity>
-            {this.renderSignInForm()}
         </ScrollView>
       </View>
     )
@@ -133,7 +137,7 @@ const styles = StyleSheet.create({
   },
   loginImage: {
     width: 380,
-    height: 210,
+    height: 200,
     paddingBottom: 15,
   },
   contentContainer: {

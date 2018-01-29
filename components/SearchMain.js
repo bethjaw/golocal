@@ -38,9 +38,10 @@ export default class SearchMain extends React.Component {
       <View style={styles.background}>
         <View style={styles.container}>
           <Image
-            style={{width: 50, height: 50}}
+            style={{width: 45, height: 45}}
             source={require('../assets/mapcheck2.png')}
           />
+          <Text style={styles.header}>GOLOCAL</Text>
         </View>
         <View style={styles.search}>
           {/* <Text style={styles.searchTitle}>Search By Connection</Text>
@@ -53,7 +54,7 @@ export default class SearchMain extends React.Component {
             style={styles.input}
             placeholder='San Francisco, Iceland...'
           /> */}
-          <Text style={styles.searchTitle}>{'Browse Locations'.toUpperCase()}</Text>
+          {/* <Text style={styles.searchTitle}>{'Browse Locations'.toUpperCase()}</Text> */}
         </View>
           <ScrollView contentContainerStyle={styles.contentContainer}>
             {this.state.locationData.map((location) =>
