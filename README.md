@@ -20,5 +20,8 @@ Unlike other sites, on GOLOCAL you have your own network of individuals and have
 ## Walkthrough
  - Video walkthrough can be found [here](https://youtu.be/aFAw_9cLDoU)
 
- Landing Page to View a Location:
+### Screenshots
 ![GoLocal Landing Page](https://github.com/bethjaw/golocal/blob/master/assets/walkthrough/golocal-screen1.png)
+![GoLocal Location Profile](https://github.com/bethjaw/golocal/blob/master/assets/walkthrough/golocal-screen2.png)
+![GoLocal Location Profile](https://github.com/bethjaw/golocal/blob/master/assets/walkthrough/golocal-screen3.png)
+![GoLocal Your Profile](https://github.com/bethjaw/golocal/blob/master/assets/walkthrough/golocal-screen4.png)
